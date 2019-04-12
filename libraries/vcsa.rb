@@ -75,13 +75,12 @@ class Vcsa < Inspec.resource(1)
 
   def updatePolicy
     return call_api(VSphereAutomation::Appliance::UpdatePolicyApi, "get")
+  end
   def authenticates?
     return true
   end
 
 
-
-private 
   def call_api(klass,method)
     case method
       when "get"
