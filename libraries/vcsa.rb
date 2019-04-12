@@ -73,10 +73,16 @@ class Vcsa < Inspec.resource(1)
     return call_api(VSphereAutomation::Appliance::SystemVersionApi, "get").build
   end
 
-  def 
-    return call_api(VSphereAutomation::Appliance::UpdatePolicyApi, "get")
+  def auto_update
+    return call_api(VSphereAutomation::Appliance::UpdatePolicyApi, "get").auto_update
   end
-  def authenticate
+
+  def auto_update
+    return call_api(VSphereAutomation::Appliance::UpdatePolicyApi, "get").auto_update
+  end
+
+
+  def exists?
     return true
   end
 
