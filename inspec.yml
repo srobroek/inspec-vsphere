@@ -1,10 +1,10 @@
-name: inspec-vsphere
-title: InSpec Profile
-maintainer: The Authors
-copyright: The Authors
-copyright_email: you@example.com
+name: vspec-vsphere
+title: vSpec resources
+maintainer: Sjors Robroek
+copyright: Sjors Robroek
+copyright_email: srobroek@vmware.com
 license: Apache-2.0
-summary: An InSpec Compliance Profile
+summary: vSpec Inspec resources for vSphere
 version: 0.1.0
 supports:
-  platform: os
+  platform: vsphere
