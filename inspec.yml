@@ -5,6 +5,7 @@ copyright: Sjors Robroek
 copyright_email: srobroek@vmware.com
 license: Apache-2.0
 summary: vSpec Inspec resources for vSphere
-version: 0.1.0
-supports:
-  platform: vsphere
+version: 1.0.1
+# supports:
+#   platform-name: vsphere
+#   platform-family: cloud
