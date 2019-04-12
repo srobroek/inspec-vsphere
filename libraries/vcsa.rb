@@ -77,9 +77,6 @@ class Vcsa < Inspec.resource(1)
     return call_api(VSphereAutomation::Appliance::UpdatePolicyApi, "get").auto_update
   end
 
-  def auto_update
-    return call_api(VSphereAutomation::Appliance::UpdatePolicyApi, "get").auto_update
-  end
 
 
   def exists?
