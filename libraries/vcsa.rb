@@ -26,7 +26,7 @@ class Vcsa < Inspec.resource(1)
   end
 
   def shell_status
-    return call_api(VSphereAutomation::Appliance::AccessShellApi, "get")
+    return call_api(VSphereAutomation::Appliance::AccessShellApi, "get").enabled
   end
 
 ### Health checks
@@ -48,7 +48,7 @@ class Vcsa < Inspec.resource(1)
   end
 
   def database_health
-    return call_api(VSphereAutomation::Appliance::HealthDatabasestorageApii, "get")
+    return call_api(VSphereAutomation::Appliance::HealthDatabasestorageApi, "get")
   end
 
   def storage_health
@@ -73,7 +73,7 @@ class Vcsa < Inspec.resource(1)
     return call_api(VSphereAutomation::Appliance::SystemVersionApi, "get").build
   end
 
-  def update_policy
+  def 
     return call_api(VSphereAutomation::Appliance::UpdatePolicyApi, "get")
   end
   def authenticate
