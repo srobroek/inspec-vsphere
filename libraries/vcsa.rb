@@ -14,55 +14,55 @@ class Vcsa < Inspec.resource(1)
 ## Service checks
 
   def ssh_status
-    return call_api(VSphereAutomation::Appliance::AccessSshApi, "get").value
+    return call_api(VSphereAutomation::Appliance::AccessSshApi, "get")
   end
 
   def consolecli_status
-    return call_api(VSphereAutomation::Appliance::AccessConsolecliApi, "get").value
+    return call_api(VSphereAutomation::Appliance::AccessConsolecliApi, "get")
   end
 
   def dcui_status
-    return call_api(VSphereAutomation::Appliance::AccessDcuiApi, "get").value
+    return call_api(VSphereAutomation::Appliance::AccessDcuiApi, "get")
   end
 
   def shell_status
-    return call_api(VSphereAutomation::Appliance::AccessShellApi, "get").value
+    return call_api(VSphereAutomation::Appliance::AccessShellApi, "get")
   end
 
 ### Health checks
 
   def system_health
-    return call_api(VSphereAutomation::Appliance::HealthSystemApi, "get").value
+    return call_api(VSphereAutomation::Appliance::HealthSystemApi, "get")
   end
 
   def load_health
-    return call_api(VSphereAutomation::Appliance::HealthLoadApi, "get").value
+    return call_api(VSphereAutomation::Appliance::HealthLoadApi, "get")
   end
 
   def memory_health
-    return call_api(VSphereAutomation::Appliance::HealthMemApi, "get").value
+    return call_api(VSphereAutomation::Appliance::HealthMemApi, "get")
   end
 
   def service_health
-    return call_api(VSphereAutomation::Appliance::HealthApplmgmtApi, "get").value
+    return call_api(VSphereAutomation::Appliance::HealthApplmgmtApi, "get")
   end
 
   def database_health
-    return call_api(VSphereAutomation::Appliance::HealthDatabasestorageApii, "get").value
+    return call_api(VSphereAutomation::Appliance::HealthDatabasestorageApii, "get")
   end
 
   def storage_health
-    return call_api(VSphereAutomation::Appliance::HealthStorageApi, "get").value
+    return call_api(VSphereAutomation::Appliance::HealthStorageApi, "get")
   end
 
   def swap_health
-    return call_api(VSphereAutomation::Appliance::HealthSwapApi, "get").value
+    return call_api(VSphereAutomation::Appliance::HealthSwapApi, "get")
   end
 
 
 ## Software checks
   def software_health
-    return call_api(VSphereAutomation::Appliance::HealthSoftwarepackagesApi, "get").value
+    return call_api(VSphereAutomation::Appliance::HealthSoftwarepackagesApi, "get")
   end
 
   def version
@@ -76,7 +76,7 @@ class Vcsa < Inspec.resource(1)
   def update_policy
     return call_api(VSphereAutomation::Appliance::UpdatePolicyApi, "get")
   end
-  def authenticates?
+  def authenticate
     return true
   end
 
@@ -93,6 +93,7 @@ class Vcsa < Inspec.resource(1)
         return "not implemented yet, sorry"
     end
   end
+end
 
 
 
