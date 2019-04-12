@@ -93,7 +93,7 @@ class Vcsa < Inspec.resource(1)
           fail Train::ClientError
         end
       else 
-        return "not implemented yet, sorry"
+        fail "not implemented yet, sorry"
     end
   end
 end
