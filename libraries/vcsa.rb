@@ -13,55 +13,55 @@ class Vcsa < Inspec.resource(1)
 
 ## Service checks
 
-  def ssh_status
+  def ssh
     return call_api(VSphereAutomation::Appliance::AccessSshApi, "get")
   end
 
-  def consolecli_status
+  def consolecli
     return call_api(VSphereAutomation::Appliance::AccessConsolecliApi, "get")
   end
 
-  def dcui_status
+  def dcui
     return call_api(VSphereAutomation::Appliance::AccessDcuiApi, "get")
   end
 
-  def shell_status
+  def shell
     return call_api(VSphereAutomation::Appliance::AccessShellApi, "get").enabled
   end
 
 ### Health checks
 
-  def system_health
+  def system
     return call_api(VSphereAutomation::Appliance::HealthSystemApi, "get")
   end
 
-  def load_health
+  def load
     return call_api(VSphereAutomation::Appliance::HealthLoadApi, "get")
   end
 
-  def memory_health
+  def memory
     return call_api(VSphereAutomation::Appliance::HealthMemApi, "get")
   end
 
-  def service_health
+  def service
     return call_api(VSphereAutomation::Appliance::HealthApplmgmtApi, "get")
   end
 
-  def database_health
+  def database
     return call_api(VSphereAutomation::Appliance::HealthDatabasestorageApi, "get")
   end
 
-  def storage_health
+  def storage
     return call_api(VSphereAutomation::Appliance::HealthStorageApi, "get")
   end
 
-  def swap_health
+  def swap
     return call_api(VSphereAutomation::Appliance::HealthSwapApi, "get")
   end
 
 
 ## Software checks
-  def software_health
+  def software
     return call_api(VSphereAutomation::Appliance::HealthSoftwarepackagesApi, "get")
   end
 
