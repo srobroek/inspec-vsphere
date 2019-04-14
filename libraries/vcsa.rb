@@ -76,7 +76,7 @@ class Vcsa < Inspec.resource(1)
   def exists?
     return true
   end
-end
+
 
 
 
