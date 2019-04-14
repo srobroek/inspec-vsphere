@@ -3,78 +3,72 @@ class Vcsa < Inspec.resource(1)
 	supports platform: 'vsphere'
 	desc 'Use the vsphere audit resource to get information from the vSphere API'
 
-  def initialize
-    begin
-      @auth_token = inspec.backend.authenticate
-    rescue VSphereAutomation::ApiError => e
-          fail Train::ClientError
-    end
-  end
 
 ## Service checks
 
   def ssh
-    return call_api(VSphereAutomation::Appliance::AccessSshApi, "get")
+    return inspec.backend.api_client(VSphereAutomation::Appliance::AccessSshApi).get.value
   end
 
+
   def consolecli
-    return call_api(VSphereAutomation::Appliance::AccessConsolecliApi, "get")
+    return inspec.backend.api_client(VSphereAutomation::Appliance::AccessConsolecliApi).get.value
   end
 
   def dcui
-    return call_api(VSphereAutomation::Appliance::AccessDcuiApi, "get")
+    return inspec.backend.api_client(VSphereAutomation::Appliance::AccessDcuiApi).get.value
   end
 
   def shell
-    return call_api(VSphereAutomation::Appliance::AccessShellApi, "get").enabled
+    return inspec.backend.api_client(VSphereAutomation::Appliance::AccessShellApi).get.value.enabled
   end
 
 ### Health checks
 
   def system
-    return call_api(VSphereAutomation::Appliance::HealthSystemApi, "get")
+    return inspec.backend.api_client(VSphereAutomation::Appliance::HealthSystemApi).get.value
   end
 
   def load
-    return call_api(VSphereAutomation::Appliance::HealthLoadApi, "get")
+    return inspec.backend.api_client(VSphereAutomation::Appliance::HealthLoadApi).get.value
   end
 
   def memory
-    return call_api(VSphereAutomation::Appliance::HealthMemApi, "get")
+    return inspec.backend.api_client(VSphereAutomation::Appliance::HealthMemApi).get.value
   end
 
   def service
-    return call_api(VSphereAutomation::Appliance::HealthApplmgmtApi, "get")
+    return inspec.backend.api_client(VSphereAutomation::Appliance::HealthApplmgmtApi).get.value
   end
 
   def database
-    return call_api(VSphereAutomation::Appliance::HealthDatabasestorageApi, "get")
+    return inspec.backend.api_client(VSphereAutomation::Appliance::HealthDatabasestorageApi).get.value
   end
 
   def storage
-    return call_api(VSphereAutomation::Appliance::HealthStorageApi, "get")
+    return inspec.backend.api_client(VSphereAutomation::Appliance::HealthStorageApi).get.value
   end
 
   def swap
-    return call_api(VSphereAutomation::Appliance::HealthSwapApi, "get")
+    return inspec.backend.api_client(VSphereAutomation::Appliance::HealthSwapApi).get.value
   end
 
 
 ## Software checks
   def software
-    return call_api(VSphereAutomation::Appliance::HealthSoftwarepackagesApi, "get")
+    return inspec.backend.api_client(VSphereAutomation::Appliance::HealthSoftwarepackagesApi).get.value
   end
 
   def version
-    return call_api(VSphereAutomation::Appliance::SystemVersionApi, "get").version
+    return inspec.backend.api_client(VSphereAutomation::Appliance::SystemVersionApi).get.value.version
   end
 
   def build
-    return call_api(VSphereAutomation::Appliance::SystemVersionApi, "get").build
+    return inspec.backend.api_client(VSphereAutomation::Appliance::SystemVersionApi).get.value.build
   end
 
   def auto_update
-    return call_api(VSphereAutomation::Appliance::UpdatePolicyApi, "get").auto_update
+    return inspec.backend.api_client(VSphereAutomation::Appliance::UpdatePolicyApi).get.value.auto_update
   end
 
 
@@ -83,20 +77,6 @@ class Vcsa < Inspec.resource(1)
     return true
   end
 
-
-  def call_api(klass,method)
-    case method
-      when "get"
-        begin
-          return klass.new(@auth_token).get.value
-        rescue VSphereAutomation::ApiError => e
-          fail Train::ClientError
-        end
-      else 
-        fail "not implemented yet, sorry"
-    end
-  end
-end
 
 
 
