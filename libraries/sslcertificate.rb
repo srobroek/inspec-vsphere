@@ -2,6 +2,7 @@ class SslCertificate < Inspec.resource(1)
   name 'sslcertificate'
 	supports platform: 'vsphere'
 	desc 'Use the SslCertificate audit resource to get information about the targets SSL certificate'
+  attr_reader :ssl_error
 
   def initialize
     @host = inspec.backend.instance_variable_get(:@options)[:host]
@@ -19,7 +20,7 @@ class SslCertificate < Inspec.resource(1)
 
   # Called by: it { should be_trusted }
   def trusted?
-    @ssl_error.nil? ? (return true ) : (return @ssl_error)
+    ssl_error == nil
   end
 
   # Called by: its('signature_algorithm') { should eq 'something' }
