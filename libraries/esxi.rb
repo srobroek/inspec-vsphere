@@ -1,5 +1,5 @@
-class Vcsa < Inspec.resource(1)
-  name 'vcsa'
+class Esxi < Inspec.resource(1)
+  name 'esxi'
 	supports platform: 'vsphere'
 	desc 'Use the vsphere audit resource to get information from the vSphere API'
 
@@ -10,30 +10,6 @@ class Vcsa < Inspec.resource(1)
     return inspec.backend.api_client(VSphereAutomation::Appliance::AccessSshApi).get.value
   end
 
-  def api_authentication
-    inspec.backend.api_client(VSphereAutomation::CIS::SessionApi).get.value.class == VSphereAutomation::CIS::CisSessionInfo ? (return true) : (return false)
-  end
-
-  def web_authentication
-    begin 
-      inspec.backend.vsphere_client('sessionManager').currentSession
-      return true
-    rescue 
-      return false
-    end
-  end
-
-  def psc_address
-    return inspec.backend.api_client(VSphereAutomation::VCenter::SystemConfigPscRegistrationApi).get.value.address
-  end
-
-  def sso_domain
-    return inspec.backend.api_client(VSphereAutomation::VCenter::SystemConfigPscRegistrationApi).get.value.sso_domain
-  end
-
-  def identity_sources
-    return inspec.backend.vsphere_client('userDirectory').domainList.reject(&:empty?)
-  end
 
   def consolecli
     return inspec.backend.api_client(VSphereAutomation::Appliance::AccessConsolecliApi).get.value
@@ -45,10 +21,6 @@ class Vcsa < Inspec.resource(1)
 
   def shell
     return inspec.backend.api_client(VSphereAutomation::Appliance::AccessShellApi).get.value.enabled
-  end
-
-  def timezone
-    return inspec.backend.api_client(VSphereAutomation::Appliance::SystemTimeTimezoneApi).get.value
   end
 
 ### Health checks
@@ -99,17 +71,12 @@ class Vcsa < Inspec.resource(1)
     return inspec.backend.api_client(VSphereAutomation::Appliance::UpdatePolicyApi).get.value.auto_update
   end
 
-## Networking info
-
-  def hostname
-    return inspec.backend.api_client(VSphereAutomation::Appliance::NetworkingApi).get.value.dns.hostname
-  end
 
 
   def exists?
     return true
   end
-end
+
 
 
 
